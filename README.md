@@ -7,7 +7,7 @@ While it was designed with biological pathways in mind, it can also be used to l
 
 #Installation instructions
 ##Dependencies
-Cerebral.js needs [http://jquery.com/ jQuery] and [http://cytoscape.github.io/cytoscape.js Cytoscape.js] to work. It works with jQuery 1.9+ and Cytoscape.js 2.2+
+Cerebral.js needs http://jquery.com and http://cytoscape.github.io/cytoscape.js to work. It works with jQuery 1.9+ and Cytoscape.js 2.2+
 
 ##Including Javascript
 
