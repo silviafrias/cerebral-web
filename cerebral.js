@@ -2,8 +2,8 @@
 /* Author: Silvia Frias */
 /**
  * Designed to work with the last version of cytoscape.js at the moment: 2.2.11
- * This layout place the nodes in horizontal layers. 
- * Default settings are set for cerebral  
+ * This layout place the nodes in horizontal layers.
+ * Default settings are set for cerebral
  */
 
 /** MODIFY THESE VARIABLES IF NEEDED **/
@@ -11,7 +11,7 @@
 // Map with the color of each layer ({layer1:color1, layer2:color2})
 var colors = {"Nucleus": "#33CC33", "Plasma membrane": "#FF9900", "Cytoplasm": "#9999FF", "Extracellular": "#FFCC11", "Cell surface": "#3366FF", "Unknown": "#8e8e8e"};
 
-// Ordered list of layers from top to bottom 
+// Ordered list of layers from top to bottom
 var layers = ['Extracellular', 'Cell surface', 'Plasma membrane', 'Cytoplasm', 'Nucleus', 'Unknown'];
 
 // Name of the attribute that contains the information of the node layer
@@ -125,15 +125,27 @@ function parseXGMMLandLoad(xgmml_file, id_obj) {
                 var identifier = '';
                 for (i in element.children) {
                     att = element.children[i];
-                    if (att.nodeName == 'att' && att.getAttribute('name') == 'Localization') {
+                    if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase() == 'Localization') {
                         localization = att.getAttribute('value');
                         break;
-                    } else if (att.nodeName == 'att' && att.getAttribute('name') == 'identifier type') {
+                    } else if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase() == 'identifier type') {
                         identifier_type = att.getAttribute('value');
-                    } else if (att.nodeName == 'att' && att.getAttribute('name') == 'identifier') {
+                    } else if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase() == 'identifier') {
                         identifier = att.getAttribute('value');
                         if (identifier_type.length > 0)
                             break;
+                    } else if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase().indexOf('id')!=-1){
+                        aux = att.getAttribute('value').split(':');
+                        if (aux.length == 2){
+                            if ((aux[0].toLowerCase().indexOf('uniprot') !=-1) ||
+                                (aux[0].toLowerCase().indexOf('innatedb') !=-1) ||
+                                (aux[0].toLowerCase().indexOf('ensembl') !=-1) ||
+                                (aux[0].toLowerCase().indexOf('entrez') !=-1)) {
+                                identifier_type = aux[0];
+                                identifier = aux[1];
+                                break;
+                            }
+                        }
                     }
                 }
                 if (localization == null) {
@@ -144,12 +156,14 @@ function parseXGMMLandLoad(xgmml_file, id_obj) {
             } else if (element.nodeName == "edge") {
                 for (i in element.children) {
                     att = element.children[i];
-                    if ((att.getAttribute('name').indexOf('type') != -1) || (att.getAttribute('name') == 'interaction')) {
-                        interaction_type = att.getAttribute('value');
-                        break;
+                    if (att.nodeName == 'att'){
+                        if ((att.getAttribute('name').toLowerCase().indexOf('type') != -1) || (att.getAttribute('name').toLowerCase() == 'interaction')) {
+                            interaction_type = att.getAttribute('value');
+                            break;
+                        }
                     }
                 }
-                elements.push({group: "edges", data: {"id": element.getAttribute('source') + '#' + element.getAttribute('target'), "name": interaction_type, "source": element.getAttribute('source'), "target": element.getAttribute('target')}});
+                elements.push({group: "edges", data: {"id": element.getAttribute('source') + '#' + element.getAttribute('target'), "name": interaction_type, "source": element.getAttribute('source'), "target": element.getAttribute('target'), "idgroup": element.getAttribute('source') + '#' + element.getAttribute('target')}});
             }
         }
         // We need to query the WS to get localisations
@@ -190,3 +204,4 @@ function parseXGMMLandLoad(xgmml_file, id_obj) {
     }
     reader.readAsText(xgmml_file);
 }
+
