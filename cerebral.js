@@ -34,7 +34,7 @@ var font = "12pt Arial";
 
 //Edges color, width and label color
 var edgeColor = '5f5f5f';
-var edgeWidth = '0.2px';
+var edgeWidth = '0.8px';
 var edgeLabel = 'black';
 
 // Node label color
