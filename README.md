@@ -22,6 +22,10 @@ After downloading the dependency libraries and the 2 source files for the cerebr
 <!-- Cerebral: cerebral.js -->
 <script type="text/javascript" charset="utf8" src="/path.to.cerebral/cerebral.js"></script>
 
+<!-- XGMML: xgmml.js -->
+<!-- Include this module if you want to use the xgmml dropbox -->
+<script type="text/javascript" charset="utf8" src="/path.to.cerebral/xgmml.js"></script>
+
 <!-- Cerebral: Horizontal layout -->
 <script type="text/javascript" charset="utf8" src="/path.to.cerebral/layout.horizontal.js"></script>
 ```
