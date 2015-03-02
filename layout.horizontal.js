@@ -17,6 +17,7 @@ options = {
     font: font
 };
 var cy;
+var defaultNodeColor = "grey";
 var cerebral_style = [
     {
         selector: 'node',
