@@ -130,6 +130,7 @@ function cerebral_ready(cy) {
     cy.on('tap', function(e) {
         if (cy == e.cyTarget) {
             resetHighLight(this);
+            filterTable("");
         }
     });
     //cy.fit();
