@@ -136,7 +136,8 @@ function parseXGMMLandLoad(xgmml_file, id_obj) {
                             data: {
                                 id: nodes[d]['id'],
                                 name: nodes[d]['name'],
-                                localization: data[d]
+                                localization: data[d],
+                                color: defaultNodeColor
                             },
                             group: "nodes"
                         };
