@@ -63,7 +63,8 @@ You can add to your JSON elements as much information as you need but the mandat
   "data": {
     "id": "node_id",
     "name": "node_name",
-    "localization": "localization"
+    "localization": "localization",
+    "color": "color"
   },
   "group": "nodes"
 },
