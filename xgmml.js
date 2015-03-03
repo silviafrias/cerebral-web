@@ -76,7 +76,7 @@ function parseXGMMLandLoad(xgmml_file, id_obj) {
                 var identifier = '';
                 for (i in element.children) {
                     att = element.children[i];
-                    if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase() == 'Localization') {
+                    if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase() == 'localization') {
                         localization = att.getAttribute('value');
                         break;
                     } else if (att.nodeName == 'att' && att.getAttribute('name').toLowerCase() == 'identifier type') {
@@ -102,7 +102,7 @@ function parseXGMMLandLoad(xgmml_file, id_obj) {
                 if (localization == null) {
                     nodes[identifier] = {"id": element.id, "name": element.getAttribute('label')}
                 } else {
-                    elements.push({group: "nodes", data: {"id": element.id, "name": element.getAttribute('label'), 'localization': localization}});
+                    elements.push({group: "nodes", data: {"id": element.id, "name": element.getAttribute('label'), 'localization': localization, 'color': defaultNodeColor}});
                 }
             } else if (element.nodeName == "edge") {
                 for (i in element.children) {
