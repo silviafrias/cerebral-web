@@ -4,6 +4,7 @@ CerebralWeb
 Cerebral javascript plugin version that extends Cytoscape.js creating a horizontal layout and placing the nodes in the region of the canvas corresponding to the appropiate subcellular localization.
 
 While it was designed with biological pathways in mind, it can also be used to lay out any graph that requires stratification according to some characteristic and thus can be used by researchers in a variety of fields, including the social sciences.
+http://database.oxfordjournals.org/content/2015/bav041.full
 
 #Installation instructions
 ##Dependencies
